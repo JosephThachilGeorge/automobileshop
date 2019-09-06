@@ -1,6 +1,8 @@
 package database;
 
 import model.customerinformation.Customerinformation;
+import model.purchase.Purchasevehicle;
+import model.service.Servicevehicle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,12 +19,28 @@ public class Database {
         }
     }
 
-    public void updateCustomer(Customerinformation customerinformation) {
+       public void updateCustomer(Customerinformation customerinformation) {
         if (customerMap.containsKey(customerinformation.getCusId())) {
             customerMap.put(customerinformation.getCusId(), customerinformation);
         } else {
             System.out.println("Customer is not present");
         }
+    }
+
+    public void displaycustomer(Customerinformation customerinformation) {
+
+        Map<String, Customerinformation> customerData = database.getCustomerMap();
+
+        for (String key : customerData.keySet()) {
+            Customerinformation d = customerData.get(key);
+            for (Servicevehicle c : d.getVehicles()) {
+                for (Purchasevehicle r : d.getPvehicles()) {
+
+                }
+            }
+
+        }
+
     }
 
     public void deleteCustomer(Customerinformation customerinformation) {

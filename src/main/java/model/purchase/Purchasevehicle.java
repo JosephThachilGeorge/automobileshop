@@ -10,7 +10,6 @@ public class Purchasevehicle implements Purchaseinfo {
     private Purchasevehicletype ptype;
     private Purchasevehicletype stype;
 
-
     public String getPname() {
         return pname;
     }
@@ -51,7 +50,6 @@ public class Purchasevehicle implements Purchaseinfo {
         this.stype = stype;
     }
 
-
     @Override
     public void addPurchasevehicle() {
 
@@ -61,7 +59,6 @@ public class Purchasevehicle implements Purchaseinfo {
     public void deletePurchasevehicle() {
 
     }
-
     @Override
     public void updatePurchasevehicle() {
 

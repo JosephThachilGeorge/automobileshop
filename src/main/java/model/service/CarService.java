@@ -1,10 +1,14 @@
 package model.service;
 
+import database.Database;
+import model.customerinformation.Customerinformation;
+import model.service.imp.Servicevehicletype;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Car implements Serviceinfo {
+public class CarService implements Serviceinfo {
 
     @Override
     public void calculatecost() {
@@ -53,10 +57,15 @@ public class Car implements Serviceinfo {
 
     }
 
-    @Override
-    public void addServicevehicle() {
 
-    }
+     @Override
+
+       public Servicevehicle addServicevehicle() {
+
+         Servicevehicle servicevehicle=new Servicevehicle();
+         servicevehicle.addVehicle(Servicevehicletype.CAR);
+         return servicevehicle;
+       }
 
     @Override
     public void deleteServicevehicle() {
@@ -65,6 +74,46 @@ public class Car implements Serviceinfo {
 
     @Override
     public void updateServicevehicle() {
+
+    }
+
+    @Override
+    public String getVehiclename() {
+        return null;
+    }
+
+    @Override
+    public void setVehiclename(String vehiclename) {
+
+    }
+
+    @Override
+    public String getVehiclemodelnumber() {
+        return null;
+    }
+
+    @Override
+    public void setVehiclemodelnumber(String vehiclemodelnumber) {
+
+    }
+
+    @Override
+    public String getProblemdescription() {
+        return null;
+    }
+
+    @Override
+    public void setProblemdescription(String problemdescription) {
+
+    }
+
+    @Override
+    public Servicevehicletype getType() {
+        return null;
+    }
+
+    @Override
+    public void setType(Servicevehicletype type) {
 
     }
 }

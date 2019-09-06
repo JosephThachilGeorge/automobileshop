@@ -2,14 +2,18 @@ package model.customerinformation;
 
 import database.Database;
 import model.purchase.Purchasevehicle;
-import model.service.Servicevehicle;
+import model.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Map;
 import java.util.Scanner;
 
+
+
 public class Customerinformation implements Customerinfo {
+
 
     private String fname;
     private String lname;
@@ -96,15 +100,13 @@ public class Customerinformation implements Customerinfo {
     }
 
 
+
+
     @Override
     public void addcustomer() {
-
-        Customerinformation customerinformation=new Customerinformation();
-        Database database=new Database();
         Scanner commandLineScanner = new Scanner(System.in);
 
         System.out.println("Enter Customer First Name:");
-        commandLineScanner.nextLine();  //this will print each line
         String fname = commandLineScanner.nextLine();
         System.out.println("Enter Customer Last Name:");
         String lname = commandLineScanner.nextLine();
@@ -113,19 +115,70 @@ public class Customerinformation implements Customerinfo {
         System.out.println("Enter Customer Mobile Number:");
         String cusmobilenumber = commandLineScanner.nextLine();
 
-        customerinformation.setFname(fname);
-        customerinformation.setLname(lname);
-        customerinformation.setCusId(cusid);
-        customerinformation.setMobilenumber(cusmobilenumber);
-
-        database.addCustomer(customerinformation);
+        this.setFname(fname);
+        this.setLname(lname);
+        this.setCusId(cusid);
+        this.setMobilenumber(cusmobilenumber);
 
         System.out.println("Enter Your VEHICLE Type: 1: FOR CAR:  2: FOR VAN  3: FOR MOTORBIKE!");
+        int CHOICE;
 
+        CHOICE = commandLineScanner.nextInt();
+
+        switch (CHOICE) {
+
+            case 1:
+
+                CarService car= new CarService();
+                Servicevehicle vehicle1 = car.addServicevehicle();
+                this.addServiceVehicle(vehicle1);
+                break;
+
+            case 2:
+
+                VanService van = new VanService();
+                Servicevehicle vehicle2 = van.addServicevehicle();
+                this.addServiceVehicle(vehicle2);
+
+                break;
+
+            case 3:
+
+                MotorbikeService motorbikeService = new MotorbikeService();
+                Servicevehicle vehicle3 = motorbikeService.addServicevehicle();
+                this.addServiceVehicle(vehicle3);
+                break;
         }
+    }
 
    @Override
     public void displaycustomer() {
+
+
+
+
+       Map<String, Customerinformation> customerData = database.getCustomerMap();
+
+       System.out.println("WELCOME TO CUSTOMER DATA BASE!");
+       System.out.println("...............................");
+
+
+       for (String key : customerData.keySet()) {
+           Customerinformation d = customerData.get(key);
+           System.out.println("CUSTOMER INFORMATION!");
+           System.out.println(String.format("Customer First Name: %s, Customer Last Name: %s, Customer ID: %s, Customer Mobile Number: %s", d.getFname(), d.getLname(), d.getCusId(), d.getMobilenumber()));
+           System.out.println("VEHICLE INFORMATION!");
+
+           for (Servicevehicle c : d.getVehicles()) {
+               System.out.println(String.format("Vehicle Type: %s, Vehicle Name: %s, Vehicle Model Number: %s, Vehicle Problem description: %s", c.getType(), c.getVehiclename(), c.getVehiclemodelnumber(), c.getProblemdescription()));
+           }
+
+           for (Purchasevehicle r : d.getPvehicles()) {
+               System.out.println(String.format("Vehicle Type: %s, Vehicle Name: %s, Vehicle Model Number: %s, Vehicle Price: %s , Vehicle Payment Status: %s", r.getStype(), r.getPname(), r.getPmodelnumber(), r.getPrice(), r.getStype()));
+
+           }
+
+       }
 
     }
 
