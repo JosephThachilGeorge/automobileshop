@@ -6,6 +6,7 @@ import model.service.Servicevehicle;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Database {
 
@@ -16,30 +17,60 @@ public class Database {
             System.out.println("Customer is already present:");
         } else {
             customerMap.put(customerinformation.getCusId(), customerinformation);
-        }
+           }
     }
 
-       public void updateCustomer(Customerinformation customerinformation) {
+    public void updateCustomer(Customerinformation customerinformation) {
         if (customerMap.containsKey(customerinformation.getCusId())) {
             customerMap.put(customerinformation.getCusId(), customerinformation);
         } else {
             System.out.println("Customer is not present");
-        }
+       }
     }
 
-    public void displaycustomer(Customerinformation customerinformation) {
+    public void updatecustomer()
+      {
+          Scanner commandLineScanner = new Scanner(System.in);
+          System.out.println("Enter the Customer ID that you want to Update:");
+          String cusId = commandLineScanner.nextLine();
+          System.out.println("Enter the new First Name of Customer ");
+          String fName = commandLineScanner.nextLine();
+          System.out.println("Enter the new Last Name of Customer ");
+          String lName = commandLineScanner.nextLine();
+          Customerinformation nameInMap = customerMap.get(cusId);
+          if (nameInMap != null) {
+              nameInMap.setFname(fName);
+              nameInMap.setLname(lName);
+              updateCustomer(nameInMap);
+          }
+          System.out.println("Updated Database:");
+      }
 
-        Map<String, Customerinformation> customerData = database.getCustomerMap();
+    public void displaycustomer() {
+        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Which Customer Id?");
+        String cusid = commandLineScanner.nextLine();
+        displaycustomer(cusid);
+    }
 
-        for (String key : customerData.keySet()) {
-            Customerinformation d = customerData.get(key);
-            for (Servicevehicle c : d.getVehicles()) {
-                for (Purchasevehicle r : d.getPvehicles()) {
+    public void displayallcustomer(){
 
-                }
-            }
-
+        for (String key : customerMap.keySet()) {
+            Customerinformation d = customerMap.get(key);
+            d.displaycustomer();
         }
+
+    }
+
+    public void displaycustomer(String cusid) {
+
+       Customerinformation customerData = customerMap.get(cusid);
+
+       if(customerData != null){
+           customerData.displaycustomer();
+       }else {
+           System.out.println("Customer doesn't exist");
+       }
 
     }
 
@@ -55,6 +86,15 @@ public class Database {
         }
 
         return;
+    }
+
+    public void deleteCustomer()
+    {
+        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Which Customer Id that You Want to Delete?");
+        String cusid = commandLineScanner.nextLine();
+        System.out.println("Customer is deleted Successfully and Information is Updated!!!!!!!");
+        deleteCustomerById(cusid);
     }
 
     public Map<String, Customerinformation> getCustomerMap() {

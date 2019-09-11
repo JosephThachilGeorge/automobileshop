@@ -119,6 +119,8 @@ public class Customerinformation implements Customerinfo {
         this.setLname(lname);
         this.setCusId(cusid);
         this.setMobilenumber(cusmobilenumber);
+        this.vehicles = new ArrayList<>();
+        this.pvehicles = new ArrayList<>();
 
         System.out.println("Enter Your VEHICLE Type: 1: FOR CAR:  2: FOR VAN  3: FOR MOTORBIKE!");
         int CHOICE;
@@ -154,41 +156,32 @@ public class Customerinformation implements Customerinfo {
    @Override
     public void displaycustomer() {
 
-
-
-
-       Map<String, Customerinformation> customerData = database.getCustomerMap();
-
-       System.out.println("WELCOME TO CUSTOMER DATA BASE!");
-       System.out.println("...............................");
-
-
-       for (String key : customerData.keySet()) {
-           Customerinformation d = customerData.get(key);
            System.out.println("CUSTOMER INFORMATION!");
-           System.out.println(String.format("Customer First Name: %s, Customer Last Name: %s, Customer ID: %s, Customer Mobile Number: %s", d.getFname(), d.getLname(), d.getCusId(), d.getMobilenumber()));
+           System.out.println(String.format("Customer First Name: %s, Customer Last Name: %s, Customer ID: %s, Customer Mobile Number: %s", this.getFname(), this.getLname(), this.getCusId(), this.getMobilenumber()));
            System.out.println("VEHICLE INFORMATION!");
 
-           for (Servicevehicle c : d.getVehicles()) {
+           for (Servicevehicle c : this.getVehicles()) {
                System.out.println(String.format("Vehicle Type: %s, Vehicle Name: %s, Vehicle Model Number: %s, Vehicle Problem description: %s", c.getType(), c.getVehiclename(), c.getVehiclemodelnumber(), c.getProblemdescription()));
            }
 
-           for (Purchasevehicle r : d.getPvehicles()) {
+         for (Purchasevehicle r : this.getPvehicles()) {
                System.out.println(String.format("Vehicle Type: %s, Vehicle Name: %s, Vehicle Model Number: %s, Vehicle Price: %s , Vehicle Payment Status: %s", r.getStype(), r.getPname(), r.getPmodelnumber(), r.getPrice(), r.getStype()));
+         }
 
-           }
-
-       }
-
+         System.out.println("------------------------------------------\n");
     }
 
     @Override
     public void deletecustomer() {
 
+        // function is written in Database class.
+
     }
 
     @Override
     public void updatecustomer() {
+
+
 
     }
 }

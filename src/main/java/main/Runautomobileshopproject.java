@@ -32,9 +32,7 @@ public class Runautomobileshopproject {
 
             MAINCHOICE = commandLineScanner.nextInt();
 
-
             switch (MAINCHOICE) {
-
                 case 1:
 
                     System.out.println("WELCOME TO VEHICLE SERVICE!");
@@ -52,29 +50,26 @@ public class Runautomobileshopproject {
                     switch (MAINCHOICE1) {
 
                          case 1:
-                            Customerinformation customerinformation = new Customerinformation();
-                            customerinformation.addcustomer();
-                            database.addCustomer(customerinformation);
-                            break;
+                             Customerinformation customerinformation = new Customerinformation();
+                             customerinformation.addcustomer();
+                             database.addCustomer(customerinformation);
+                             break;
                          case 2:
                              database.displayallcustomer();
                              break;
-                        case 3:
+                         case 3:
                              database.displaycustomer();
                              break;
-                        case 4:
-                            database.deleteCustomer();
-                            break;
-                        case 5:
-                            database.updatecustomer();
-                            break;
-                            }
-
+                         case 4:
+                             database.deleteCustomer();
+                             break;
+                         case 5:
+                             database.updatecustomer();
+                             break;
+                             }
                     break;
 
-
                 case 2:
-
                     System.out.println("WELCOME TO PURCHASE OF CAR SERVICE!");
                     System.out.println("ENTER YOUR CHOICE !");
                     System.out.println("1: INSERT NEW CUSTOMER !");

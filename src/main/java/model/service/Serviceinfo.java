@@ -9,7 +9,6 @@ public interface Serviceinfo {
     void expecteddeliverydate();
     void discount();
 
-
     Servicevehicle addServicevehicle();
     void deleteServicevehicle();
     void updateServicevehicle();
@@ -25,5 +24,4 @@ public interface Serviceinfo {
 
     Servicevehicletype getType();
     void setType(Servicevehicletype type);
-
 }
